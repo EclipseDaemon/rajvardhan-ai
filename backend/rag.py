@@ -1,5 +1,5 @@
 from langchain_ollama import ChatOllama
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_cohere import CohereEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
@@ -38,8 +38,9 @@ CONTEXT:
 ])
 
 #load vector_db and embbeding model
-embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+embedding_model = CohereEmbeddings(
+    model="embed-english-light-v3.0",
+    cohere_api_key=os.getenv("COHERE_API_KEY")
 )
 
 vector_db = Chroma(

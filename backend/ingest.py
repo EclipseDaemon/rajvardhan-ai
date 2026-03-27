@@ -1,7 +1,10 @@
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_cohere import CohereEmbeddings
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 #load the document in the system
 resume_loader = PyPDFLoader("./docs/Rajvardhan_Resume.pdf")
@@ -15,8 +18,9 @@ splitter = RecursiveCharacterTextSplitter(
 raw_chunks = splitter.split_documents(main_resume)
 
 #load embedding model here so that chunks can now be convert into vectors
-embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+embedding_model = CohereEmbeddings(
+    model="embed-english-light-v3.0",
+    cohere_api_key=os.getenv("COHERE_API_KEY")
 )
 
 #load db if it already exists

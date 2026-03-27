@@ -1,11 +1,23 @@
-from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_ollama import ChatOllama
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_chroma import Chroma
+from langchain_groq import ChatGroq
+from dotenv import load_dotenv
+import os
 
 #load llm
-llm = ChatOllama(model="mistral")
+# llm = ChatOllama(model="mistral")
+
+load_dotenv()
+
+llm = ChatGroq(
+    model="llama-3.1-8b-instant",
+    api_key=os.getenv("GROQ_API_KEY"),
+    streaming=True
+)
 
 #create prompt for the llm
 prompt = ChatPromptTemplate.from_messages([
@@ -26,7 +38,9 @@ CONTEXT:
 ])
 
 #load vector_db and embbeding model
-embedding_model = OllamaEmbeddings(model="nomic-embed-text")
+embedding_model = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
 
 vector_db = Chroma(
     embedding_function=embedding_model,

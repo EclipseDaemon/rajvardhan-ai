@@ -3,12 +3,15 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, field_validator
 from rag import rag_chain
 from fastapi.middleware.cors import CORSMiddleware
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+     allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:5173")],
     allow_methods=["GET","POST"],
     allow_headers=["*"],
 )

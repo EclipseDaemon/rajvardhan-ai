@@ -1,7 +1,7 @@
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
 
 #load the document in the system
 resume_loader = PyPDFLoader("./docs/Rajvardhan_Resume.pdf")
@@ -15,7 +15,9 @@ splitter = RecursiveCharacterTextSplitter(
 raw_chunks = splitter.split_documents(main_resume)
 
 #load embedding model here so that chunks can now be convert into vectors
-embedding_model = OllamaEmbeddings(model="nomic-embed-text")
+embedding_model = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
 
 #load db if it already exists
 vector_db = Chroma(

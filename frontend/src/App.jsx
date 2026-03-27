@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-// Custom Cursor
+// Custom Cursor — desktop only
 function Cursor() {
   const cursorRef = useRef(null);
   const ringRef = useRef(null);
@@ -22,8 +22,8 @@ function Cursor() {
 
   return (
     <>
-      <div ref={cursorRef} className="cursor" />
-      <div ref={ringRef} className="cursor-ring" />
+      <div ref={cursorRef} className="cursor hidden md:block" />
+      <div ref={ringRef} className="cursor-ring hidden md:block" />
     </>
   );
 }
@@ -54,19 +54,19 @@ function Typewriter({ text, speed = 50 }) {
 // Hero Section
 function Hero() {
   return (
-    <section className="relative min-h-screen grid-bg flex flex-col items-center justify-center overflow-hidden px-6">
+    <section className="relative min-h-screen grid-bg flex flex-col items-center justify-center overflow-hidden px-4 md:px-6">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[600px] rounded-full bg-green-500 opacity-5 blur-[120px]" />
+        <div className="w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-green-500 opacity-5 blur-[120px]" />
       </div>
 
-      <div className="mb-6 flex items-center gap-2 text-green-400 text-xs tracking-[0.3em] uppercase fade-up">
-        <span className="w-8 h-px bg-green-400" />
+      <div className="mb-6 flex items-center gap-2 text-green-400 text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase fade-up">
+        <span className="w-6 md:w-8 h-px bg-green-400" />
         AI Portfolio v1.0
-        <span className="w-8 h-px bg-green-400" />
+        <span className="w-6 md:w-8 h-px bg-green-400" />
       </div>
 
       <h1
-        className="glitch text-6xl md:text-8xl font-black text-white mb-4 tracking-tight fade-up"
+        className="glitch text-5xl sm:text-6xl md:text-8xl font-black text-white mb-4 tracking-tight fade-up text-center"
         data-text="RAJVARDHAN"
         style={{ fontFamily: "Orbitron, sans-serif", animationDelay: "0.1s" }}
       >
@@ -74,7 +74,7 @@ function Hero() {
       </h1>
 
       <p
-        className="text-green-400 text-lg md:text-xl mb-8 glow-green fade-up"
+        className="text-green-400 text-sm sm:text-lg md:text-xl mb-8 glow-green fade-up text-center px-4"
         style={{ animationDelay: "0.3s" }}
       >
         <Typewriter
@@ -84,17 +84,20 @@ function Hero() {
       </p>
 
       <p
-        className="max-w-xl text-center text-gray-400 text-sm leading-relaxed mb-10 fade-up"
+        className="max-w-xl text-center text-gray-400 text-xs sm:text-sm leading-relaxed mb-10 fade-up px-4"
         style={{ animationDelay: "0.5s" }}
       >
         2+ years building LLM-powered systems. RAG pipelines. FastAPI. From
         async task queues to vector databases — I own systems end-to-end.
       </p>
 
-      <div className="flex gap-4 fade-up" style={{ animationDelay: "0.7s" }}>
+      <div
+        className="flex flex-col sm:flex-row gap-3 sm:gap-4 fade-up px-4 w-full sm:w-auto"
+        style={{ animationDelay: "0.7s" }}
+      >
         <a
           href="#chat"
-          className="px-6 py-3 bg-green-400 text-black font-bold text-sm tracking-wider hover:bg-green-300 transition-colors"
+          className="px-6 py-3 bg-green-400 text-black font-bold text-sm tracking-wider hover:bg-green-300 transition-colors text-center"
           style={{ fontFamily: "Orbitron, sans-serif" }}
         >
           TALK TO MY AI
@@ -103,7 +106,7 @@ function Hero() {
           href="https://github.com/EclipseDaemon"
           target="_blank"
           rel="noreferrer"
-          className="px-6 py-3 border border-green-400 text-green-400 font-bold text-sm tracking-wider hover:bg-green-400 hover:text-black transition-colors"
+          className="px-6 py-3 border border-green-400 text-green-400 font-bold text-sm tracking-wider hover:bg-green-400 hover:text-black transition-colors text-center"
           style={{ fontFamily: "Orbitron, sans-serif" }}
         >
           GITHUB
@@ -134,10 +137,13 @@ function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 max-w-6xl mx-auto">
-      <div className="flex items-center gap-4 mb-16">
+    <section
+      id="skills"
+      className="py-16 md:py-24 px-4 md:px-6 max-w-6xl mx-auto"
+    >
+      <div className="flex items-center gap-4 mb-10 md:mb-16">
         <span
-          className="text-green-400 text-xs tracking-[0.3em] uppercase"
+          className="text-green-400 text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase"
           style={{ fontFamily: "Orbitron, sans-serif" }}
         >
           02 // Skills
@@ -145,11 +151,11 @@ function Skills() {
         <div className="flex-1 h-px bg-gradient-to-r from-green-400 to-transparent" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {skills.map((skill, i) => (
           <div
             key={i}
-            className="border border-gray-800 p-6 hover:border-green-400 transition-all duration-300 group relative overflow-hidden"
+            className="border border-gray-800 p-5 md:p-6 hover:border-green-400 transition-all duration-300 group relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-green-400 opacity-0 group-hover:opacity-5 transition-opacity" />
             <h3
@@ -164,7 +170,7 @@ function Skills() {
                   key={j}
                   className="text-gray-400 text-sm flex items-center gap-2 group-hover:text-gray-200 transition-colors"
                 >
-                  <span className="w-1 h-1 bg-green-400 rounded-full" />
+                  <span className="w-1 h-1 bg-green-400 rounded-full shrink-0" />
                   {item}
                 </li>
               ))}
@@ -183,7 +189,7 @@ function Projects() {
       name: "LocalMind",
       tag: "RAG · FastAPI · LangChain · ChromaDB",
       desc: "Fully offline, privacy-first RAG document assistant. Zero cloud dependency. LLaMA 3 via Ollama.",
-      link: "https://github.com/EclipseDaemon",
+      link: "https://github.com/EclipseDaemon/rajvardhan-ai",
     },
     {
       name: "AI Task Pipeline",
@@ -194,10 +200,13 @@ function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-24 px-6 max-w-6xl mx-auto">
-      <div className="flex items-center gap-4 mb-16">
+    <section
+      id="projects"
+      className="py-16 md:py-24 px-4 md:px-6 max-w-6xl mx-auto"
+    >
+      <div className="flex items-center gap-4 mb-10 md:mb-16">
         <span
-          className="text-green-400 text-xs tracking-[0.3em] uppercase"
+          className="text-green-400 text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase"
           style={{ fontFamily: "Orbitron, sans-serif" }}
         >
           03 // Projects
@@ -205,21 +214,21 @@ function Projects() {
         <div className="flex-1 h-px bg-gradient-to-r from-green-400 to-transparent" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {projects.map((p, i) => (
           <a
             key={i}
             href={p.link}
             target="_blank"
             rel="noreferrer"
-            className="border border-gray-800 p-8 hover:border-green-400 transition-all duration-300 group relative overflow-hidden block"
+            className="border border-gray-800 p-6 md:p-8 hover:border-green-400 transition-all duration-300 group relative overflow-hidden block"
           >
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-green-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             <span className="text-xs text-green-400 tracking-widest uppercase">
               {p.tag}
             </span>
             <h3
-              className="text-2xl font-bold text-white mt-2 mb-3 group-hover:text-green-400 transition-colors"
+              className="text-xl md:text-2xl font-bold text-white mt-2 mb-3 group-hover:text-green-400 transition-colors"
               style={{ fontFamily: "Orbitron, sans-serif" }}
             >
               {p.name}
@@ -266,7 +275,7 @@ function Chat() {
     setMessages((prev) => [...prev, { role: "ai", content: "" }]);
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: userMsg.content }),
@@ -314,10 +323,13 @@ function Chat() {
   ];
 
   return (
-    <section id="chat" className="py-24 px-6 max-w-5xl mx-auto">
-      <div className="flex items-center gap-4 mb-16">
+    <section
+      id="chat"
+      className="py-16 md:py-24 px-4 md:px-6 max-w-5xl mx-auto"
+    >
+      <div className="flex items-center gap-4 mb-10 md:mb-16">
         <span
-          className="text-green-400 text-xs tracking-[0.3em] uppercase"
+          className="text-green-400 text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase"
           style={{ fontFamily: "Orbitron, sans-serif" }}
         >
           04 // Interface
@@ -327,11 +339,11 @@ function Chat() {
 
       <div className="border border-green-400 border-opacity-30 relative scanlines">
         {/* Terminal header */}
-        <div className="border-b border-green-400 border-opacity-20 px-4 py-3 flex items-center justify-between bg-black bg-opacity-50">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500 opacity-70" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500 opacity-70" />
-            <div className="w-3 h-3 rounded-full bg-green-500 opacity-70" />
+        <div className="border-b border-green-400 border-opacity-20 px-3 md:px-4 py-3 flex items-center justify-between bg-black bg-opacity-50">
+          <div className="flex items-center gap-1 md:gap-2">
+            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-red-500 opacity-70" />
+            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-yellow-500 opacity-70" />
+            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500 opacity-70" />
           </div>
           <span
             className="text-green-400 text-xs tracking-widest"
@@ -341,25 +353,27 @@ function Chat() {
           </span>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-xs">LIVE</span>
+            <span className="text-green-400 text-xs hidden sm:inline">
+              LIVE
+            </span>
           </div>
         </div>
 
         {/* Messages */}
-        <div className="h-96 overflow-y-auto p-6 space-y-4 bg-black bg-opacity-40">
+        <div className="h-72 sm:h-80 md:h-96 overflow-y-auto p-4 md:p-6 space-y-4 bg-black bg-opacity-40">
           {messages.map((msg, i) => (
             <div
               key={i}
-              className={`flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
+              className={`flex gap-2 md:gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
             >
               <div
                 className={`text-xs mt-1 shrink-0 ${msg.role === "ai" ? "text-green-400" : "text-blue-400"}`}
                 style={{ fontFamily: "Orbitron, sans-serif" }}
               >
-                {msg.role === "ai" ? "RAJ_AI>" : "YOU>"}
+                {msg.role === "ai" ? "RAJ>" : "YOU>"}
               </div>
               <div
-                className={`text-sm leading-relaxed max-w-xl ${msg.role === "ai" ? "text-gray-300" : "text-blue-300"}`}
+                className={`text-xs sm:text-sm leading-relaxed max-w-xs sm:max-w-sm md:max-w-xl ${msg.role === "ai" ? "text-gray-300" : "text-blue-300"}`}
               >
                 {msg.content}
                 {loading &&
@@ -376,12 +390,12 @@ function Chat() {
 
         {/* Suggestions */}
         {messages.length === 1 && (
-          <div className="px-6 py-3 border-t border-green-400 border-opacity-10 flex gap-2 flex-wrap">
+          <div className="px-4 md:px-6 py-3 border-t border-green-400 border-opacity-10 flex gap-2 flex-wrap">
             {suggestions.map((s, i) => (
               <button
                 key={i}
                 onClick={() => setQuestion(s)}
-                className="text-xs text-green-400 border border-green-400 border-opacity-30 px-3 py-1 hover:bg-green-400 hover:text-black transition-colors"
+                className="text-xs text-green-400 border border-green-400 border-opacity-30 px-2 md:px-3 py-1 hover:bg-green-400 hover:text-black transition-colors"
               >
                 {s}
               </button>
@@ -389,8 +403,27 @@ function Chat() {
           </div>
         )}
 
+        {/* Action Buttons */}
+        <div className="px-4 md:px-6 py-3 border-t border-green-400 border-opacity-10 flex gap-2 md:gap-3 flex-wrap bg-black bg-opacity-30">
+          <a
+            href="https://github.com/EclipseDaemon/rajvardhan-ai"
+            target="_blank"
+            rel="noreferrer"
+            className="text-xs text-green-400 border border-green-400 border-opacity-40 px-3 md:px-4 py-2 hover:bg-green-400 hover:text-black transition-colors"
+          >
+            VIEW RAG SOURCE CODE
+          </a>
+          <a
+            href="/Rajvardhan_Resume.pdf"
+            download="Rajvardhan_Pawar_Resume.pdf"
+            className="text-xs text-green-400 border border-green-400 border-opacity-40 px-3 md:px-4 py-2 hover:bg-green-400 hover:text-black transition-colors"
+          >
+            DOWNLOAD RESUME
+          </a>
+        </div>
+
         {/* Input */}
-        <div className="border-t border-green-400 border-opacity-20 p-4 flex gap-3 bg-black bg-opacity-50">
+        <div className="border-t border-green-400 border-opacity-20 p-3 md:p-4 flex gap-2 md:gap-3 bg-black bg-opacity-50">
           <span
             className="text-green-400 text-sm mt-2 shrink-0"
             style={{ fontFamily: "Orbitron, sans-serif" }}
@@ -404,13 +437,13 @@ function Chat() {
             onKeyDown={handleKeyDown}
             placeholder="Type your query..."
             rows={1}
-            className="flex-1 bg-transparent text-green-300 placeholder-green-900 text-sm resize-none focus:outline-none"
+            className="flex-1 bg-transparent text-green-300 placeholder-green-900 text-sm resize-none focus:outline-none disabled:opacity-50"
             style={{ fontFamily: "Space Mono, monospace" }}
           />
           <button
             onClick={sendMessage}
             disabled={loading || !question.trim()}
-            className="text-xs px-4 py-2 border border-green-400 text-green-400 hover:bg-green-400 hover:text-black disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="text-xs px-3 md:px-4 py-2 border border-green-400 text-green-400 hover:bg-green-400 hover:text-black disabled:opacity-30 disabled:cursor-not-allowed transition-colors shrink-0"
             style={{ fontFamily: "Orbitron, sans-serif" }}
           >
             {loading ? "..." : "SEND"}
@@ -428,14 +461,15 @@ function Chat() {
 // Footer
 function Footer() {
   return (
-    <footer className="border-t border-gray-800 py-12 px-6 text-center">
+    <footer className="border-t border-gray-800 py-10 md:py-12 px-4 md:px-6 text-center">
       <p
         className="text-gray-600 text-xs tracking-widest"
         style={{ fontFamily: "Orbitron, sans-serif" }}
       >
-        RAJVARDHAN PAWAR 2025 — BUILT WITH RAG + FASTAPI + REACT
+        RAJVARDHAN PAWAR {new Date().getFullYear()} — BUILT WITH RAG + FASTAPI +
+        REACT
       </p>
-      <div className="flex justify-center gap-6 mt-4">
+      <div className="flex justify-center gap-4 md:gap-6 mt-4">
         <a
           href="mailto:rajvardhanp15@gmail.com"
           className="text-gray-600 hover:text-green-400 text-xs transition-colors tracking-widest"
@@ -468,18 +502,19 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <>
       <Cursor />
       <div className="min-h-screen" style={{ background: "#020408" }}>
-        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-gray-900 bg-black bg-opacity-80 backdrop-blur-sm px-6 py-4 flex justify-between items-center">
+        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-gray-900 bg-black bg-opacity-80 backdrop-blur-sm px-4 md:px-6 py-4 flex justify-between items-center">
           <span
             className="text-green-400 font-bold text-sm tracking-widest"
             style={{ fontFamily: "Orbitron, sans-serif" }}
           >
             RAJ.AI
           </span>
-          <div className="flex gap-6">
+          <div className="flex gap-4 md:gap-6">
             {["Skills", "Projects", "Chat"].map((item) => (
               <a
                 key={item}
